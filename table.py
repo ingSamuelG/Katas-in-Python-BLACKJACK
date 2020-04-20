@@ -22,7 +22,10 @@ ImagenBotonRojo=PhotoImage(file="asset/botones/botonr.png")
 ImagenBotonVerde=PhotoImage(file="asset/botones/botonv.png")
 Carta1=PhotoImage(file="asset/C/TC.png")
 Carta2=PhotoImage(file="asset/H/AH.png")
-imagenf10=PhotoImage(file="asset/fichas/F10.png")
+imagenF10=PhotoImage(file="asset/fichas/F10.png")
+imagenF50=PhotoImage(file="asset/fichas/F50.png")
+imagenF100=PhotoImage(file="asset/fichas/F100.png")
+imagenF500=PhotoImage(file="asset/fichas/F500.png")
 Etiqueta_fondo=Label(Raiz, image=FondoMesa)
 Etiqueta_fondo.place(relwidth=1, relheight=1)
 
@@ -39,24 +42,40 @@ Boton_verde.place(relx=0.7, rely=0.75,relheight=0.15, relwidth=0.088)
 
 #----------------------Fichas-------------------------------------------------
 
-ficha10=Radiobutton(Raiz, text="10", value=10, font=("Casino","20"))
-ficha10.place(relx=0.1, rely=0.75, relheight=0.136 ,relwidth=0.05)
 
-ficha50=Radiobutton(Raiz, text="40", value=50, font=("Casino","20")) #the font that im using have a bug that takes the character 4 for 5 and vice versa#
-ficha50.place(relx=0.15, rely=0.75, relheight=0.136 ,relwidth=0.05)
+EtiquetaF10=Label(Raiz, image=imagenF10, bg="#88202a")
+EtiquetaF10.place(relx=0.05, rely= 0.75, relheight=0.1, relwidth=0.05)
 
-ficha100=Radiobutton(Raiz, text="100", value=100, font=("Casino","20"))
-ficha100.place(relx=0.2, rely=0.75, relheight=0.136 ,relwidth=0.05)
+ficha10=Radiobutton(Raiz, text="10", value=10, font=("Casino","20"),bg="#88202a", activebackground="#8c2027")
+ficha10.select()
+ficha10.place(relx=0.068, rely=0.85, relheight=0.035 ,relwidth=0.045)
 
-ficha500=Radiobutton(Raiz, text="400", value=500, font=("Casino","20")) #the font that im using have a bug that takes the character 4 for 5 and vice versa#
-ficha500.place(relx=0.25, rely=0.75, relheight=0.136 ,relwidth=0.05)
+EtiquetaF50=Label(Raiz, image=imagenF50, bg="#941b22")
+EtiquetaF50.place(relx=0.120, rely= 0.75, relheight=0.09, relwidth=0.05)
 
-#-------------------------------------------------------------------------------
+ficha50=Radiobutton(Raiz, text="40", value=50, font=("Casino","20"), bg="#88202a", activebackground="#8c2027") #the font that im using have a bug that takes the character 4 for 5 and vice versa#
+ficha50.place(relx=0.14, rely=0.85, relheight=0.035 ,relwidth=0.045)
+
+EtiquetaF100=Label(Raiz, image=imagenF100, bg="#a31d24")
+EtiquetaF100.place(relx=0.192, rely= 0.75, relheight=0.1, relwidth=0.05)
+
+ficha100=Radiobutton(Raiz, text="100", value=100, font=("Casino","20"), bg="#9f1f24",activebackground="#9f1f24")
+ficha100.place(relx=0.21, rely=0.85, relheight=0.035 ,relwidth=0.06)
+
+EtiquetaF500=Label(Raiz, image=imagenF500, bg="#a31d24")
+EtiquetaF500.place(relx=0.26, rely= 0.75, relheight=0.09, relwidth=0.05)
+
+ficha500=Radiobutton(Raiz, text="400", value=500, font=("Casino","20"), bg="#a21e22", activebackground="#a21e22") #the font that im using have a bug that takes the character 4 for 5 and vice versa#
+ficha500.place(relx=0.28, rely=0.85, relheight=0.035 ,relwidth=0.06)
+
+#-------------------------Mano jugador----------------------------------------------
 
 CartaMano1=Label(Raiz, image=Carta1)
 CartaMano1.place(relx=0.5, rely=0.75, relheight=0.136 ,relwidth=0.06)
 CartaMano2=Label(Raiz, image=Carta2)
 CartaMano2.place(relx=0.435, rely=0.75, relheight=0.136 ,relwidth=0.06)
+
+
 
 
 
