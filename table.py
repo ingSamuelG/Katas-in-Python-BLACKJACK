@@ -8,9 +8,11 @@ Micanvas=Canvas(Raiz, width= 1200, height=700)
 Micanvas.pack()
 
 ApuestaVar=StringVar()
+MisFichasVar=StringVar()
 CantidadApostar=IntVar()
 
 ApuestaVar.set("0")
+MisFichasVar.set("5000")
 
 def center(ventana):
 	ventana.update_idletasks()
@@ -22,11 +24,25 @@ def center(ventana):
 
 
 def defiene_apuesta():
-	Cantidad=CantidadApostar.get()
-	En_pantalla= ApuestaVar.get()
-	resultado= Cantidad + int(En_pantalla)
 
-	ApuestaVar.set(resultado)
+	Cantidad=CantidadApostar.get()
+	En_pantalla=ApuestaVar.get()
+	if ApuestaVar.get()=="0":
+		resultado= Cantidad + int(En_pantalla)
+	
+	else:
+		sinMenos=En_pantalla[1:len(ApuestaVar.get())]
+		resultado= Cantidad + int(sinMenos)
+		
+	MisFichas=MisFichasVar.get()
+	Restante=int(MisFichas)-Cantidad
+	MisFichasVar.set(str(Restante))
+
+	ApuestaVar.set("-{}".format(resultado))
+
+def borrartodo():
+	ApuestaVar.set("0")
+	MisFichasVar.set("5000")
 
 #_________________________imagenes________________________________________
 
@@ -50,7 +66,7 @@ NuevoMenu.add_command(label="Repartir de cartas")
 NuevoMenu.add_command(label="Salir")
 
 BarraMenu.add_cascade(label="Menu", menu=NuevoMenu)
-BarraMenu.add_cascade(label="Borrar", menu=BorrarMenu)
+BarraMenu.add_command(label="Borrar pantalla", command=borrartodo)
 
 #____________________Botones_________________________________________________
 
@@ -65,8 +81,10 @@ Boton_verde.place(relx=0.7, rely=0.75,relheight=0.15, relwidth=0.088)
 
 #----------------------Fichas-------------------------------------------------
 
+MisFichas=Entry( bg="black", textvariable=MisFichasVar ,font=("NI7seg",18),fg="#03f943",justify="right")
+MisFichas.place(relx=0.13, rely= 0.63, relheight=0.05, relwidth=0.1)
 
-ApuestaPantalla=Entry( bg="black", textvariable=ApuestaVar ,font=("NI7seg",18),fg="#03f943",justify="right")
+ApuestaPantalla=Entry( bg="black", textvariable=ApuestaVar ,font=("NI7seg",18),fg="red",justify="right")
 ApuestaPantalla.place(relx=0.13, rely= 0.68, relheight=0.05, relwidth=0.1)
 
 EtiquetaF10=Label(Raiz, image=imagenF10, bg="#88202a")
