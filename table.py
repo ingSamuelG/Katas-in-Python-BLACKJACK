@@ -29,7 +29,19 @@ imagenF500=PhotoImage(file="asset/fichas/F500.png")
 Etiqueta_fondo=Label(Raiz, image=FondoMesa)
 Etiqueta_fondo.place(relwidth=1, relheight=1)
 
-#___________________________
+
+BarraMenu=Menu(Raiz)
+
+NuevoMenu=Menu(BarraMenu, tearoff=0)
+NuevoMenu.add_command(label="Repartir de cartas")
+NuevoMenu.add_command(label="Salir")
+
+BarraMenu.add_cascade(label="Menu", menu=NuevoMenu)
+
+
+
+
+#____________________Botones_________________________________________________
 
 Boton_rojo=Button(Raiz,image=ImagenBotonRojo)
 Boton_rojo.config(bd=0, bg="#8c2027",activebackground="#8c2027")
@@ -80,8 +92,8 @@ CartaMano2.place(relx=0.435, rely=0.75, relheight=0.136 ,relwidth=0.06)
 
 
 
-
-
+Raiz.config(menu=BarraMenu)
+Raiz.title("BlackJack")
 center(Raiz)
 
 Raiz.mainloop()
