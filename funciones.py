@@ -1,6 +1,6 @@
 import random
 
-mazo=["A","2","3","4","5","6","7","8","9","T","J","Q","K"]
+mazo=["A","DOS","TRES","CUATRO","CINCO","SEIS","SIETE","OCHO","NUEVE","T","J","Q","K"]
 tipo=["C","S","H","D"]
 
 def unir_listas(lista,k=0):
@@ -33,5 +33,38 @@ def construir_maso():
 	listamapa=list(mapa)
 	elmazo=unir_listas(listamapa)
 	return reparte_cartas(elmazo)
+
+def pedir_carta(maso):
+	carta_repartir=random.sample(maso, 1)
+	maso.remove(carta_repartir[0])
+	return [carta_repartir[0], maso]
+
+def dame_valor(carta):
+
+	if carta.startswith("A"):
+		return 1
+	elif carta.startswith("DOS"):
+		return 2
+	elif carta.startswith("TRES"):
+		return 3
+	elif carta.startswith("CUATRO"):
+		return 4
+	elif carta.startswith("CINCO"):
+		return 5
+	elif carta.startswith("SEIS"):
+		return 6
+	elif carta.startswith("SIETE"):
+		return 7
+	elif carta.startswith("OCHO"):
+		return 8
+	elif carta.startswith("NUEVE"):
+		return 9
+	elif carta.startswith("T") or carta.startswith("J") or carta.startswith("Q") or carta.startswith("K"):
+		return 10
+
+def decide():
+
+	return random.choice([True, False])
+
 
 
