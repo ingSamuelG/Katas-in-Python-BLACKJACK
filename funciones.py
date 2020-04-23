@@ -39,11 +39,12 @@ def pedir_carta(maso):
 	maso.remove(carta_repartir[0])
 	return [carta_repartir[0], maso]
 
-def dame_valor(carta):
+def valor_idividual(carta):
 
 	if carta.startswith("A"):
-		return 1
-	elif carta.startswith("DOS"):
+		return 11
+
+	if carta.startswith("DOS"):
 		return 2
 	elif carta.startswith("TRES"):
 		return 3
@@ -62,9 +63,13 @@ def dame_valor(carta):
 	elif carta.startswith("T") or carta.startswith("J") or carta.startswith("Q") or carta.startswith("K"):
 		return 10
 
+def dame_valor(carta,carta2):
+
+	return valor_idividual(carta) + valor_idividual(carta2)
+
+
+
 def decide():
 
 	return random.choice([True, False])
-
-
 
