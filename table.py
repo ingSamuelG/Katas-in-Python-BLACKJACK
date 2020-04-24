@@ -13,7 +13,9 @@ def inicia(apostad=0):
 	global posicarta
 	global posicartaC
 	global me_atrevi
+	global final
 
+	final=0
 	s_q_casa=0
 	posicarta=0.5
 	posicartaC=0.5
@@ -66,7 +68,9 @@ def inicia(apostad=0):
 				if carta3.startswith("A") or carta4.startswith("A") or cartaNueva.startswith("A") and ya_lei_AS_C==0:
 					if casa+nueva_pedida>22:
 						casa=(casa+nueva_pedida)-10
-						ya_lei_AS=1
+					else:
+						casa+=nueva_pedida
+					ya_lei_AS_C=1
 				elif casa+nueva_pedida>22 and cartaNueva.startswith("A") and ya_lei_AS==1:
 					casa+=1
 				else:
@@ -81,7 +85,9 @@ def inicia(apostad=0):
 				if carta1.startswith("A") or carta2.startswith("A") or cartaNueva.startswith("A") and ya_lei_AS==0:
 					if mano+nueva_pedida>22:
 						mano=(mano+nueva_pedida)-10
-						ya_lei_AS=1
+					else:
+						mano+=nueva_pedida
+					ya_lei_AS=1
 
 				elif mano+nueva_pedida>22 and cartaNueva.startswith("A") and ya_lei_AS==1:
 					mano+=1
@@ -143,7 +149,7 @@ def inicia(apostad=0):
 					dibujar_carta(casa)
 					evalua_jugada(casa)
 					print("jugue",casa)
-					
+
 				else:
 					s_q_casa=1
 					print("me quede")
@@ -285,8 +291,11 @@ def inicia(apostad=0):
 
 		def defiene_apuesta():
 
+			global final
+
 			Cantidad=CantidadApostar.get()
 			En_pantalla=ApuestaVar.get()
+			
 			if ApuestaVar.get()=="0":
 				resultado= Cantidad + int(En_pantalla)
 			
@@ -295,10 +304,24 @@ def inicia(apostad=0):
 				resultado= Cantidad + int(sinMenos)
 				
 			MisFichas=MisFichasVar.get()
-			Restante=int(MisFichas)-Cantidad
-			MisFichasVar.set(str(Restante))
 
-			ApuestaVar.set("-{}".format(resultado))
+			if int(MisFichas)<=0:
+				MisFichasVar.set("0")
+			else:
+				Restante=int(MisFichas)-Cantidad
+				MisFichasVar.set(str(Restante))
+
+			if int(MisFichasVar.get())==0 and final==0:
+
+				ApuestaVar.set(int(resultado))
+				final+=1
+
+			elif int(MisFichasVar.get())==0 and final==1:
+				ApuestaVar.set(int(En_pantalla))
+
+				
+			else:
+				ApuestaVar.set("-{}".format(resultado))
 
 
 		Etiqueta_fondo=Label(Raiz, image=FondoMesa)
